@@ -1,68 +1,68 @@
-<div>
-  <h1>Busca de Filmes</h1>
-  <input type="text" [(ngModel)]=nomeFilme>
-  <button   (click)=buscarFilme()>Buscar</button>
-</div>
+<div class="container">
+  <ul>
+    <li><h2>Busca de filmes em TMDB API</h2></li>
+    <li><input type="text" class="form-control input-sm" maxlength="64" placeholder="Nome do Filme" [(ngModel)]=nomeFilme/></li>
+    <li><button type="submit" class="btn-primary btn-sm" (click)=buscarFilme()>Pesquisar Filme</button></li>
+  </ul>          
 
-<h1>Lista de Filmes</h1>
-<div *ngIf="undefined === restItems">Loading...</div>
-<div *ngIf="undefined !== restItems">
-  <div class="container">
-    <ul>
-      <!--[innerHTML]="post.title"-->
-      <li *ngFor="let filme of restItems['results']" >
-        
-        <div class="movie-card">
-              <div class="movie-header">
-                <img src="{{ getImage(filme.poster_path) }}" class="card-img-cover">
-              </div><!--movie-header-->
+  <div *ngIf="undefined === restItems">
+    <span>Faça uma consulta...</span>
+  </div>
+  <div *ngIf="undefined !== restItems">
+    <!--Exibição dos dados dos filmes encontrados em busca-->
+    <div class="container">
+      <div *ngFor="let filme of restItems['results']">     
+          <div class="movie-card">
 
-              <div class="movie-content">
-                <div class="movie-content-header">
-                  <a href="#">
-                    <h3 class="movie-title" [innerHTML]="filme.title"></h3>
-                  </a>
-                  <!-- <div class="imax-logo"></div> -->
-                </div>
-                <div class="movie-info">
-                  <div class="info-section">
-                    <label> Data de Lançamento</label>
-                    <span [innerHTML]="filme.release_date"></span>
-                  </div><!--date,time-->
+                <div class="movie-header">
+                  <img src="{{ getImage(filme.poster_path) }}" class="card-img-cover thumbnail">
+                </div><!--poster do filme-->
 
-                  <div class="info-section">
-                    <label>Idioma</label>
-                    <span [innerHTML]="filme.original_language"></span>
-                  </div><!--Lingua-->
+                <div class="movie-content">
+                  <div class="movie-content-header">
+                    <a href="#">
+                      <h3 class="movie-title" [innerHTML]="filme.title"></h3>
+                    </a>
 
-                  <div class="info-section">
-                    <label>Nota</label>
-                    <span [innerHTML]="filme.vote_average"></span>
-                  </div><!--Nota-->
+                  </div>
+                  <div class="movie-info">
+                    <div class="info-section">
+                      <label> Data de Lançamento</label>
+                      <span [innerHTML]="filme.release_date"></span>
+                    </div>
 
-                  <div class="info-section">
-                    <label>Votos</label>
-                    <span [innerHTML]="filme.vote_count"></span>
-                  </div><!--votos-->
+                    <div class="info-section">
+                      <label>Idioma</label>
+                      <span [innerHTML]="filme.original_language"></span>
+                    </div><!--Lingua original-->
 
-                </div><!--info-básica-->
+                    <div class="info-section">
+                      <label>Nota</label>
+                      <span [innerHTML]="filme.vote_average"></span>
+                    </div><!--Nota geral-->
 
-                <div class="movie-info">
-                    <span [innerHTML]="filme.overview"></span>
-                </div><!--Sinopse-->
+                    <div class="info-section">
+                      <label>Votos</label>
+                      <span [innerHTML]="filme.vote_count"></span>
+                    </div><!--numero de votos-->
 
-              </div><!--movie-content-->
+                  </div><!--info-básica-->
 
-            </div><!--movie-card-->
+                  <div class="movie-info">
+                      <span [innerHTML]="filme.overview"></span>
+                  </div><!--Sinopse-->
 
-      </li>
-    </ul>
+                </div><!--conteudo dos filmes-->
+
+          </div><!--movie-card-->       
+      </div>
+    </div>
   </div>
 </div>
 
 <!--
 
-#EXEMPLO DE RETORNO DOS DADOS EM DATABASE
+#EXEMPLO DE RETORNO DOS DADOS PELA API TMDB
 
   adult:false
   backdrop_path:"/rRTMdhZ7kxMdJIqykz0t4p0HABA.jpg"
