@@ -14,7 +14,7 @@
         
         <div class="movie-card">
               <div class="movie-header">
-                <img src="{{ getImage(filme.poster_path) }}" class="img-fluid img-thumbnail">
+                <img src="{{ getImage(filme.poster_path) }}" class="card-img-cover">
               </div><!--movie-header-->
 
               <div class="movie-content">
@@ -45,7 +45,12 @@
                     <span [innerHTML]="filme.vote_count"></span>
                   </div><!--votos-->
 
-                </div>
+                </div><!--info-básica-->
+
+                <div class="movie-info">
+                    <span [innerHTML]="filme.overview"></span>
+                </div><!--Sinopse-->
+
               </div><!--movie-content-->
 
             </div><!--movie-card-->
