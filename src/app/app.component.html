@@ -1,0 +1,77 @@
+<div>
+  <h1>Busca de Filmes</h1>
+  <input type="text" [(ngModel)]=nomeFilme>
+  <button   (click)=buscarFilme()>Buscar</button>
+</div>
+
+<h1>Lista de Filmes</h1>
+<div *ngIf="undefined === restItems">Loading...</div>
+<div *ngIf="undefined !== restItems">
+  <div class="container">
+    <ul>
+      <!--[innerHTML]="post.title"-->
+      <li *ngFor="let filme of restItems['results']" >
+        
+        <div class="movie-card">
+              <div class="movie-header">
+                <img src="{{ getImage(filme.poster_path) }}" class="img-fluid img-thumbnail">
+              </div><!--movie-header-->
+
+              <div class="movie-content">
+                <div class="movie-content-header">
+                  <a href="#">
+                    <h3 class="movie-title" [innerHTML]="filme.title"></h3>
+                  </a>
+                  <!-- <div class="imax-logo"></div> -->
+                </div>
+                <div class="movie-info">
+                  <div class="info-section">
+                    <label> Data de Lançamento</label>
+                    <span [innerHTML]="filme.release_date"></span>
+                  </div><!--date,time-->
+
+                  <div class="info-section">
+                    <label>Idioma</label>
+                    <span [innerHTML]="filme.original_language"></span>
+                  </div><!--Lingua-->
+
+                  <div class="info-section">
+                    <label>Nota</label>
+                    <span [innerHTML]="filme.vote_average"></span>
+                  </div><!--Nota-->
+
+                  <div class="info-section">
+                    <label>Votos</label>
+                    <span [innerHTML]="filme.vote_count"></span>
+                  </div><!--votos-->
+
+                </div>
+              </div><!--movie-content-->
+
+            </div><!--movie-card-->
+
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--
+
+#EXEMPLO DE RETORNO DOS DADOS EM DATABASE
+
+  adult:false
+  backdrop_path:"/rRTMdhZ7kxMdJIqykz0t4p0HABA.jpg"
+  genre_ids:(3) [878, 28, 12]
+  id:97
+  original_language:"en"
+  original_title:"Tron"
+  overview:"As Kevin Flynn searches for proof that he invented a hit video game, he is "digitalized" by a laser and finds himself inside The Grid, where programs suffer under the tyrannical rule of the Master Control Program. With the help of TRON, a security program, Flynn seeks to free The Grid from the MCP."
+  popularity:10.119646
+  poster_path:"/cTF8lpXvAwT1SLH9kVFZZl0AO0D.jpg"
+  release_date:"1982-07-09"
+  title:"Tron"
+  video:false
+  vote_average:6.6
+  vote_count:891
+
+-->
